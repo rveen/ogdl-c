@@ -1,0 +1,7 @@
+- gpath: add *, ** t path specs
+- parser: special case in blocks:
+
+block here_this_element \
+    text and more text
+  here_this_other_element
+

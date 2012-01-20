@@ -1,0 +1,12 @@
+<html>
+<header>
+<head><link REL="STYLESHEET" HREF="doxygen.css" TYPE="text/css">
+<title>libogdl reference</title>
+</head>
+<body>
+<center>
+<h4>OGDL / C API Documentation (release @VERSION@)</h4>
+</center>
+<table width=100%>
+<tr><td width=100% height=1 bgcolor="#cccccc"></td></tr>
+</table>

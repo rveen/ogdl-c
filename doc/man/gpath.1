@@ -1,0 +1,69 @@
+.TH gpath 1 "11 Nov 2004"
+.SH NAME
+gpath \- path resolver for OGDL streams
+.SH SYNOPSIS
+
+\fBgpath\fP [options] path [filename]
+
+.SH DESCRIPTION
+\fBgpath\fP is a structured text file processor that reads an
+OGDL file or stream and extracts parts of it according to the
+specified path. 
+
+The input file or stream is loaded as a graph in memory,
+and printed out according to the given path. If '.' is given as path,
+the whole graph is printed to the standard output. Else the path is
+resolved against the graph and the result printed.
+
+.SH OPTIONS
+.TP
+\fB-d\fP \fIn\fP
+Depth of output graph
+.TP
+\fB-n\fP \fInumber\fP
+Number of spaces used for indentation (default 4).
+.TP
+\fB-r\fP
+Include the root node.
+
+.SH PATHS
+
+The path language used is OGDL Path, as specified in
+<http://ogdl.org>. Basically, it is a set of tokens separated
+by dots, where the dots act as edges of the graph.
+
+.SH
+Examples
+
+Given the file 'network.g':
+
+  eth0
+    ip 192.168.0.2
+    mask 255.255.255.0
+    gw 192.168.0.1
+
+  dns 
+    192.168.0.10, 192.168.0.11
+
+\fB$ gpath eth0.ip network.g\fR
+
+\fI192.168.0.2\fP.
+
+\fB$ gpath -d 1 eth0 network.g\fP
+
+\fIip\fP\p
+\fImask\fP\p
+\fIgw\fP
+
+\fB$ gpath dns.[0] network.g\fP
+
+\fI192.168.0.10\fP
+
+
+.SH BUGS
+Supports only OGDL 1.0 Level 1 (trees, no cycles).
+OGDL specification.
+
+.SH AUTHOR
+Rolf Veen. See <http://ogdl.org> for more information.
+

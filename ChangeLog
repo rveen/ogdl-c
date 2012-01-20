@@ -1,0 +1,53 @@
+title 'ogdlutils changelog'
+
+20041111 \
+  ogdlparser.c: now it can also parse from strings.
+  graph.c: Funtion Graph_getString added
+  Windows MSVC make files added (thanks to Shaun Clowes)
+  Several bugs fixed.
+
+20040224 \
+  ogdlparser.c, node(): Standalone ';' separator resets indentation to the
+      indentation of the current line. Code that allows the use parenthesis
+      is commented out. 
+  ogdlparser.c: round-trip comments introduced. They must begin with "# ".
+  graph.c: comments are printed without quotes.
+
+20040208 \
+  ogdlparser.c: mixed tabs and spaces allowed. Default tab=8 (Bennett Todd).
+  gpath.c: add a newline to one-line responses (Bennett Todd).
+  xml2ogdl.c: input from stdin added.
+
+20040118 \
+  General renaming of functions to more object oriented names.
+  Unified header ogdl.h
+
+20040105 \
+  ogdl.c:  default handler is now graphHandler() (was printHandler()).
+
+20040102 \
+  ogdl.h:  OGDL_EOS defined as ASCII 12. Usefull for OGDL log files.
+  ogdl.c:  eos() checks now also for OGDL_EOS
+  graph.c: added functions to print to files.
+
+20031206 \
+  gpath.c: added fbasename(). Root set to file name.
+  graph.c: added setGraphContent(), to set g->name to the given string.
+
+20031118 \
+  graph.c: freeGraph(): added check for g->nodes.
+  gpath.c: added a check for null graph comming out of the parser.
+           (solves a bug with empty files).
+
+20031022 \
+  gpath.c: changed -root to -r. Added a while loop to process options.
+
+20031020 \
+  gpath.c: added -root switch to print also the root node.
+  graph.c: added PrintGraph2, that also prints the root node.
+
+
+
+
+
+
