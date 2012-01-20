@@ -13,14 +13,15 @@ The OGDL package consists of the "libogdl" C library and following tools:
   - xml2ogdl  (XML to OGDL converter)
   - tindent   (simple indentation tool)
 
-More info at our website: http://ogdl.sf.net
+More info at our website: http://ogdl.org
 Mailinglist: http://lists.sourceforge.net/lists/listinfo/ogdl-core
 
 Installation
 ------------
+[Unpack the zip or tgz file and change to the main directory.]
 
-The file xml2ogdl.c needs the expat include file and library installed,
-usually found in the expat-devel package. 
+[The file xml2ogdl.c needs the expat include file and library installed,
+usually found in the expat-devel package.] 
 
 To build and install:
 

@@ -1,5 +1,8 @@
 title 'ogdlutils changelog'
 
+20120120 \
+  xml2ogdl.c: now outputs canonical OGDL. New option -c. -n option removed.
+
 20041111 \
   ogdlparser.c: now it can also parse from strings.
   graph.c: Funtion Graph_getString added
