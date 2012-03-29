@@ -153,9 +153,13 @@ void Graph_free (Graph g)
     free (g);
 }
 
-/** Returns:
-    - 0 when it has printed a block
-    - 1 otherwhise
+/** Returns zero when the line has been 'closed', ie, a NL has been printed.
+ *
+ * BUG(): This function should print lines with spaces but without nl's as quoted,
+ * because they may not be terminal nodes. Lines with nl's can be considered leaf
+ * or terminal nodes (in practice).
+ *
+ * BUG(): This function should handle comments correctly.
 */
 
 int Graph_fprintString (FILE *fp, const char *s, int indent, int pending_break)
@@ -173,47 +177,45 @@ int Graph_fprintString (FILE *fp, const char *s, int indent, int pending_break)
                 sp=1;
             else if (s[i] == '\n' || s[i] == '\r')
                 nl=1;
+
             if (nl && sp)
                 break;
         }
 
-        /* print a block */
-      
-        if (nl && indent) {
-            fputs(" \\\n",fp);
+		if (nl || sp) {
 
-            for (j=0; j< indent; j++)
-                fputc(' ',fp);
+			if (indent>0) {
+			    fputs(" \\\n", fp);
+			}
 
-            for (i=0; i< len-1; i++) {
-                fputc(s[i],fp);
-                if (s[i] == '\n')
-                    for (j=0; j< indent; j++)
-                        fputc(' ',fp);
-            }
-            fputc(s[i],fp);
-            return s[i] == 10 ? 0:1;
-        }
+			for (j = 0; j < indent; j++)
+				fputc(' ', fp);
+
+			for (i = 0; i < len; i++) {
+				fputc(s[i], fp);
+				if (i<(len-1) && s[i] == '\n')
+					for (j = 0; j < indent; j++)
+						fputc(' ', fp);
+
+			}
+			if (s[i-1]!='\n')
+				fputc('\n',fp);
+
+			return 0;
+		}
         
         /* printing simple strings */
-        
-        if (pending_break)
-            fputc('\n',fp);
+		if (pending_break)
+		    fputc('\n',fp);
         
         for (i=0; i<indent; i++)
             fputc(' ',fp);
             
-	if (s[0] == '#' && (s[1]==' ' || s[1]=='\t'))
-	    sp = 0;    
-	    
-        if (sp)
-            fputc('"',fp);
+	    if (s[0] == '#')
+	        sp = 0;
         
         for (i=0; i<len; i++)
             fputc(s[i],fp);
-
-        if (sp)
-            fputc('"',fp);
             
         return 1;
 }

@@ -18,8 +18,9 @@ char buf[BUFFSIZE];
 char cbuf[BUFFSIZE];
 
 int depth;
-int indent = 4;
+int indent = 2;
 int flag_content = 0; /* if true, content of elements are identified by CONTENT */
+int pending = 0;
 
 int empty(char *s)
 {
@@ -41,20 +42,20 @@ void chars(void *data, const char *text, int len)
 
 void start(void *data, const char *el, const char **attr)
 {
-    int i,j,k;
+    int i,j;
 
     cbuf[0] = 0;
 
     j = depth * indent;
-    Graph_printString(el,j,0);
-    putchar('\n');
+    pending = Graph_printString(el,j,pending);
 
     for (i = 0; attr[i]; i += 2)
     {
-    	Graph_printString(attr[i],j+indent,0);
+    	Graph_printString(attr[i],j+indent,pending);
     	putchar('\n');
     	Graph_printString(attr[i+1],j+2*indent,0);
     	putchar('\n');
+    	pending = 0;
     }
     depth++;
 } 
@@ -64,16 +65,16 @@ void end(void *data, const char *el)
     if ( ! empty(cbuf) ) {
 
     	int i;
-    	for (i=0; i< depth*indent; i++)
-    		putchar(' ');
 
     	if (flag_content) {
-    	    printf(CONTENT " ");
+    	    pending = Graph_printString (CONTENT,depth*indent,pending);
+    	    Graph_printString (cbuf,(depth+1)*indent,pending);
+    	} else {
+    		Graph_printString (cbuf,depth*indent,pending);
     	}
-
-        Graph_printString (cbuf,0,0);
         putchar('\n');
         cbuf[0] = 0;
+        pending = 0;
     }
     depth--;
 }
@@ -93,7 +94,7 @@ int main(int argc, char **argv)
     if (argc==1) {
          puts("usage \\\n  xml2ogdl [-c] [file]");
          puts("version " VERSION );
-         puts("options \\\n  -c  identify content by '" CONTENT "'" );
+         puts("options \\\n  -c  identify content by \"" CONTENT "\"" );
          exit(1);
     }
 

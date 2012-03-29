@@ -61,7 +61,7 @@ int main(int argc, char **argv)
     Graph g;
     FILE *f = stdin;
     OgdlParser parser;
-    int index=1, maxLevel=-1, indent=4, root=0;
+    int index=1, maxLevel=-1, indent=2, root=0;
 
     if (argc==1) {
         puts("gpath 'OGDL path resolver'");
