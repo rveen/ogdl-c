@@ -185,8 +185,14 @@ int Graph_fprintString (FILE *fp, const char *s, int indent, int pending_break)
 		if (nl || sp) {
 
 			if (indent>0) {
-			    fputs(" \\\n", fp);
+				if (pending_break)
+					fputc('\n',fp);
+				for (j = 0; j < indent; j++)
+					fputc(' ', fp);
+			    fputs("\\\n", fp);
 			}
+
+			indent+=2;
 
 			for (j = 0; j < indent; j++)
 				fputc(' ', fp);
