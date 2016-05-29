@@ -25,16 +25,16 @@ usually found in the expat-devel package.]
 
 To configure build:
 
-  mkdir build
-  cd build
-  cmake .. [use -DCMAKE_INSTALL_PREFIX=/usr/local or similar to change location.]
+    mkdir build
+    cd build
+    cmake .. [use -DCMAKE_INSTALL_PREFIX=/usr/local or similar to change location.]
 
 Then build:
 
-  make
-  make install
+    make
+    make install
 
 To build the OGDL API documentation (needs doxygen):
 
-  make doc
+    make doc
 
