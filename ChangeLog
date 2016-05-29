@@ -1,5 +1,8 @@
 title 'ogdlutils changelog'
 
+20160501 \
+  Updated to use CMake
+
 20120120 \
   xml2ogdl.c: now outputs canonical OGDL. New option -c. -n option removed.
 
