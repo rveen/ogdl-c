@@ -7,7 +7,7 @@ add_subdirectory("${PROJECT_SOURCE_DIR}/tools")
 
 find_package(Doxygen)
 if(DOXYGEN_FOUND)
-    add_custom_target(doc COMMAND ${DOXYGEN_EXECUTABLE} "${CMAKE_CURRENT_SOURCE_DIR}/doc/doxygen.conf"
+    add_custom_target(doc ALL COMMAND ${DOXYGEN_EXECUTABLE} "${CMAKE_CURRENT_SOURCE_DIR}/doc/doxygen.conf"
         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
         COMMENT "Building documentation..."
    )
