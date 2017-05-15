@@ -23,16 +23,18 @@ Installation
 [The file xml2ogdl.c needs the expat include file and library installed,
 usually found in the expat-devel package.] 
 
-To build and install:
+To configure build:
 
-  make
-  make install
+    mkdir build
+    cd build
+    cmake .. [use -DCMAKE_INSTALL_PREFIX=/usr/local or similar to change location.]
+
+Then build:
+
+    make
+    make install
 
 To build the OGDL API documentation (needs doxygen):
 
-  make doc
-
-To uninstall:
-
-  make uninstall
+    make doc
 
