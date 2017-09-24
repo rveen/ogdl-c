@@ -21,5 +21,27 @@ add_library(
     ${INCLUDE_FILES}
 )
 
+#SWIG
+#load the cmake SWIG package
+find_package(SWIG)
+if(SWIG_FOUND)
+	include(${SWIG_USE_FILE})
+
+	#load the package that SWIG uses to generate Python
+	find_package(PythonLibs)
+
+	#point to python headers and ogdl header
+	include_directories(${PYTHON_INCLUDE_DIRS} ${CMAKE_CURRENT_SOURCE_DIR})
+
+	#tell SWIG to create a new module, called mongopyAPI, 
+	#in Python and point to the SWIG interface file (the .i file)
+	swig_add_module(ogdlpy python ${CMAKE_CURRENT_SOURCE_DIR}/ogdl.i)
+
+	#link the above module to the API (the shared object) we just created and to Python
+	swig_link_libraries(ogdlpy ${LIBRARY_NAME} ${PYTHON_LIBRARIES})
+
+endif()
+
 install(TARGETS ${LIBRARY_NAME} DESTINATION lib)
 install(FILES ${INCLUDE_FILES} DESTINATION include)
+
