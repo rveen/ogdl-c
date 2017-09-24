@@ -7,7 +7,8 @@ setup.py file for SWIG
 from distutils.core import setup, Extension
 
 #TODO : generate ogdlPYTHON_wrap dynamically on installation (check how pyzmq does it)
-# CMake Ref  :http://www.benjack.io/2017/06/12/python-cpp-tests.html
+# CMake Ref : http://www.benjack.io/2017/06/12/python-cpp-tests.html
+# Python Ref : https://packaging.python.org/guides/packaging-binary-extensions/
 
 # but lets KISS
 
