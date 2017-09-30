@@ -143,6 +143,7 @@ EXTERN void         OgdlParser_graphHandler     (OgdlParser p, int level, int ty
 EXTERN void         OgdlParser_printHandler     (OgdlParser p, int level, int type, char * s);
 EXTERN Graph        Ogdl_load                   (char * fileName);
 EXTERN void         OgdlParser_error            (OgdlParser p, int n);
+EXTERN void         OgdlParser_fatal            (OgdlParser p, int n);
 EXTERN void         OgdlParser_setErrorHandler  (OgdlParser p, errorHandlerFunction h);
 EXTERN const char * OgdlParser_getErrorMessage  (int n);
 

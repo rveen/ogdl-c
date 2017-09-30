@@ -88,6 +88,12 @@ void OgdlParser_error(OgdlParser p, int n)
 {
     printf("ogdlparser.c: [ERR %d] %s at line %d\n", 
            n,OgdlParser_getErrorMessage(n),p->line);
+}
+
+void OgdlParser_fatal(OgdlParser p, int n)
+{
+    printf("ogdlparser.c: [ERR %d] %s at line %d\n", 
+           n,OgdlParser_getErrorMessage(n),p->line);
     exit(1);
 }
 
@@ -128,6 +134,7 @@ OgdlParser OgdlParser_detachGraph(OgdlParser p)
     
     return OgdlParser_reuse(p);
 }
+
 OgdlParser OgdlParser_reuse(OgdlParser p)
 {
     if (!p) return 0;

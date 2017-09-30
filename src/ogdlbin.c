@@ -33,7 +33,7 @@ void OgdlBinParser_graphHandler(OgdlBinParser p, int level, int type, char *s)
     if (!p->g) { 
         /* initialize */
         p->g = malloc(sizeof(p->g[0]) * LEVELS);
-        if (!p->g) { error(p,ERROR_malloc); return; }
+        if (!p->g) { p->errorHandler(p,ERROR_malloc); return; }
         for (i=1; i<LEVELS; i++)
             p->g[i]=0;
         p->g[0] = Graph_new("_root");
@@ -46,9 +46,9 @@ void OgdlBinParser_graphHandler(OgdlBinParser p, int level, int type, char *s)
     }
     
     /* sanity checks */
-    if (level>=(LEVELS-1))   { error(p,ERROR_maxLevels); return; }
-    if (level < 0)           { error(p,ERROR_negativeLevels); return; }
-    if (p->g[level] == NULL) { error(p,ERROR_nullGraph); return; }
+    if (level>=(LEVELS-1))   { p->errorHandler(p,ERROR_maxLevels); return; }
+    if (level < 0)           { p->errorHandler(p,ERROR_negativeLevels); return; }
+    if (p->g[level] == NULL) { p->errorHandler(p,ERROR_nullGraph); return; }
 
     /* create a new node and add it to current level */
     g = Graph_new(p->buf);
@@ -67,7 +67,7 @@ OgdlBinParser OgdlBinParser_new( readFunction readf, int fd )
     p->read = readf;
     p->g = 0;
     p->handler = (void *) OgdlBinParser_graphHandler;
-    p->errorHandler = 0;
+    p->errorHandler = (void *) OgdlParser_error;
     p->readfd=fd;
     
     return p;		
