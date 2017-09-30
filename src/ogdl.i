@@ -1,4 +1,4 @@
-%module example
+%module ogdl
 %{
 #include "ogdl.h"
 %}
